@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
+const IDENTIFIER = ":";
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -12,6 +13,7 @@ express()
 var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
+var commands = require("./commands.js");
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -31,7 +33,7 @@ bot.on('ready', function (evt) {
 bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
-    if (message.substring(0, 1) == '!') {
+    if (message.substring(0, 1) == IDENTIFIER) {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
        
@@ -39,10 +41,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
             case 'ping':
-                bot.sendMessage({
-                    to: channelID,
-                    message: 'Pong!'
-                });
+                commands.ping();
+            break;
+            case 'help':
+                commands.help();
+            break;
+            case 'synoniem':
+                commands.synoniem(args[1]);
             break;
             // Just add any case commands if you want to..
          }
