@@ -18,10 +18,11 @@ module.exports = {
             html = html.match(/>([^<]*)</g);
             // Clean tags and array commas.
             html = html.toString().replace(/,/g,"").replace(/</g,"").replace(/>/g,"");
-            bot.sendMessage({
-                to: channelID,
-                message: html
-            });
+            if (html.search("WikiWoordenboek") == -1) 
+                bot.sendMessage({
+                    to: channelID,
+                    message: html
+                });
         };
         // Make http call.
         helper.httpGetAsync(
