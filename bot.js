@@ -1,3 +1,6 @@
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 5000
 var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');

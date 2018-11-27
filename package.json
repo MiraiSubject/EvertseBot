@@ -4,7 +4,7 @@
     "description": "Een informaticarobot",
     "main": "bot.js",
     "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [
         "example",
@@ -14,9 +14,10 @@
     "license": "MIT",
     "dependencies": {
         "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+        "express": "^4.16.4",
         "winston": "^3.1.0"
     },
     "engines": {
         "node": "10.x"
-      }
-}  
+    }
+}
