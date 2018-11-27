@@ -3,9 +3,20 @@
     "version": "1.0.0",
     "description": "Een informaticarobot",
     "main": "bot.js",
+    "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "example",
+        "heroku"
+    ],
     "author": "Belosceani",
+    "license": "MIT",
     "dependencies": {
         "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
         "winston": "^3.1.0"
-    }
-}
+    },
+    "engines": {
+        "node": "10.x"
+      }
+}  
