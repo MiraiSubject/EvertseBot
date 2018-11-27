@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
-const IDENTIFIER = ":";
+const IDENTIFIER = "*";
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -38,18 +38,24 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         var cmd = args[0];
        
         args = args.splice(1);
-        switch(cmd) {
-            // !ping
-            case 'ping':
-                commands.ping();
-            break;
-            case 'help':
-                commands.help();
-            break;
-            case 'synoniem':
-                commands.synoniem(args[1]);
-            break;
-            // Just add any case commands if you want to..
-         }
+        try {
+            switch(cmd) {
+                // !ping
+                case 'ping':
+                    commands.ping(bot, channelID);
+                break;
+                case 'help':
+                    commands.help(bot, channelID);
+                break;
+                case 'synoniem':
+                    commands.synoniem(bot, channelID, args[0]);
+                break;
+            }
+        } catch (e) {
+            bot.sendMessage({
+                to: channelID,
+                message: "oepsiewoepsie, we hebben een vaudjewaudje gemaakt, OwO.\n" + e.message
+            });
+        }
      }
 });
